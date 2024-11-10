@@ -7,9 +7,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/css/output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"></script>
+
+    
 
 </head>
 <body class="bg-gray-100">
+  <script type="module" src="main.js"></script>
   
   <header>
     <nav class="bg-gray-800">
@@ -96,7 +103,6 @@
       </nav>
 </header>
 
-<!-- From Uiverse.io by OnlyCodeChannel -->
 <div class="searchBox flex items-center bg-gray-100 p-4 rounded-lg shadow-lg">
   <input class="searchInput flex-grow p-2 rounded-l-lg border border-gray-300 focus:outline-none" type="text" name="" placeholder="Search something">
   <button class="searchButton p-2 bg-blue-500 hover:bg-blue-700 text-white rounded-r-lg flex items-center justify-center" href="#">
