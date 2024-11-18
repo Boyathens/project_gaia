@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project:Gaia</title>
-    <link rel="stylesheet" href="/css/output.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <title>Watchlist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-blue-400">
+<body class="bg-gray-100">
     <header>
         <nav class="bg-gray-800">
             <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -88,7 +87,7 @@
                 <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a href="/index.html" class="rounded-md  hover:bg-gray-700  px-3 py-2 text-sm font-medium text-white" aria-current="page">Home</a>
                 <a href="/src/howitworks.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">How does it work?</a>
-                <a href="/src/become-lender.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Become a lender</a>
+                <a href="/src/become-lender.html" class="rounded-md px-3 py-2 text-sm font-medium bg-gray-900 text-gray-300 hover:text-white">Become a lender</a>
                 <a href="/src/register.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
                 <a href="/src/History.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">History</a>
                 <a href="/src/watch-list.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Watch List</a>
@@ -97,67 +96,38 @@
           </nav>
     </header>
 
-    <h1 id="title-text" class="text-2xl text-center">How does Project:Gaia work?</h1>
-    <div class="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-4 gap-5 ml-5 mt-10">
-        <div class="bg-grey p-4 rounded shadow w-15 h-full">
-            <h3 class="text-lg">Look for the item needed and Reserve.</h3>
-            <br>
-            <h3 class="text-sm">Start by browsing our website to find the item you're interested in renting. Take your time to compare options and select the perfect item that meets your needs.</h3>
+    <main class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold text-center mb-6">Your Watchlist</h1>
+        
+        
+        <div class="mb-6">
+            <input type="text" placeholder="Search your watchlist..." class="w-full p-2 rounded border border-gray-300 focus:ring focus:ring-blue-300">
         </div>
-        <div class="bg-grey p-4 rounded shadow w-15 h-full">
-            <h3 class="text-lg">Go to the shop to Pick up Reserved item</h3>
-            <br>
-            <h3 class="text-sm">Once reservation is done online, head to the designated shop location for pickup. make sure bring any necessary identification or confirmation details to ensure a smooth collection process.</h3>
-        </div>
-        <div class="bg-grey p-4 rounded shadow w-15 h-full">
-            <h3 class="text-lg">Wear and Enjoy!</h3>
-            <br>
-            <h3 class="text-sm">After picking up the reserved item, It's time to enjoy! Use it as planned, whether it's for a special event, a casual outing, or any other occasion. Make the most of your rental and have fun!</h3>
-        </div>
-        <div class="bg-grey p-4 rounded shadow w-15 h-full">
-            <h3 class="text-lg">Return on Time</h3>
-            <br>
-            <h3 class="text-sm">When you're finished, Please return the item to the shop by the agreed-upon date and time. Timely returns help the shops maintain inventory and provide great service to all clients. If you need an extension, reach out to the shop you reserved from in advance to see if it is possible.</h3>
-        </div>
-    </div>
 
-    <footer class="bg-gray-800 text-white py-6">
-      <div class="container mx-auto px-4">
-          <div class="flex flex-col md:flex-row justify-between">
-              <!-- Navigation Links -->
-              <div class="mb-4 md:mb-0">
-                  <h3 class="text-lg font-semibold">Quick Links</h3>
-                  <ul class="mt-2 space-y-2">
-                      <li><a href="/about" class="text-gray-400 hover:text-white">About</a></li>
-                      <li><a href="/services" class="text-gray-400 hover:text-white">Services</a></li>
-                      <li><a href="/privacy" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
-                      <li><a href="/terms" class="text-gray-400 hover:text-white">Terms of Service</a></li>
-                      <li><a href="/faq" class="text-gray-400 hover:text-white">FAQs</a></li>
-                  </ul>
-              </div>
-  
-              <!-- Social Media Icons -->
-              <div class="mb-4 md:mb-0">
-                  <h3 class="text-lg font-semibold">Follow Us</h3>
-                  <div class="flex space-x-4 mt-2">
-                      <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
-                      <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
-                      <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
-                      <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
-                  </div>
-              </div>
-          </div>
-  
-          <!-- Copyright Notice -->
-          <div class="mt-6 border-t border-gray-700 pt-4 text-center">
-              <p class="text-sm">© 2024 Your Company Name. All rights reserved.</p>
-          </div>
-  
-          <!-- Accessibility Links -->
-          <div class="mt-4 text-center">
-              <a href="/accessibility" class="text-gray-400 hover:text-white">Accessibility Statement</a>
-          </div>
-      </div>
-  </footer>
+       
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+           
+            <div class="bg-white rounded-lg shadow hover:shadow-lg transition duration-300">
+                <img src="https://via.placeholder.com/150" alt="Item" class="w-full h-40 object-cover rounded-t-lg">
+                <div class="p-4">
+                    <h2 class="text-lg font-semibold">Item Title</h2>
+                    <p class="text-gray-600 text-sm">A short description of the item.</p>
+                    <button class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Remove</button>
+                </div>
+            </div>
+
+         
+            <div class="bg-white rounded-lg shadow hover:shadow-lg transition duration-300">
+                <img src="https://via.placeholder.com/150" alt="Item" class="w-full h-40 object-cover rounded-t-lg">
+                <div class="p-4">
+                    <h2 class="text-lg font-semibold">Another Item</h2>
+                    <p class="text-gray-600 text-sm">Description of this item.</p>
+                    <button class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Remove</button>
+                </div>
+            </div>
+
+            <!-- Add more items as needed -->
+        </div>
+    </main>
 </body>
 </html>

@@ -11,6 +11,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"></script>
+  <script src="/src/Filter.js"></script>
 
     
 
@@ -52,10 +53,12 @@
               <div class="hidden sm:ml-6 sm:block">
                 <div class="flex space-x-4">
                   <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                  <a href="/src/index.html" class="rounded-md px-3 py-2 text-sm font-medium bg-gray-800 text-gray-300  hover:text-white">Home</a>
-                  <a href="/src/howitworks.html" class="rounded-md px-3 py-2 text-sm font-medium bg-gray-800 text-gray-300  hover:text-white">How does it work?</a>
-                  <a href="/src/become-lender.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 text-gray-300 hover:text-white">Become a lender</a>
+                  <a href="/index.html" class="rounded-md  hover:bg-gray-700  px-3 py-2 text-sm font-medium text-white" aria-current="page">Home</a>
+                  <a href="/src/howitworks.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">How does it work?</a>
+                  <a href="/src/become-lender.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:text-white">Become a lender</a>
                   <a href="/src/register.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
+                  <a href="/src/History.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">History</a>
+                  <a href="/src/watch-list.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Watch List</a>
                 </div>
               </div>
             </div>
@@ -94,14 +97,22 @@
         <div class="sm:hidden" id="mobile-menu">
           <div class="space-y-1 px-2 pb-3 pt-2">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="/src/index.html" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Home</a>
-            <a href="/src/howitworks.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">How does it work?</a>
-            <a href="/src/become-lender.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Become a lender</a>
-            <a href="/src/register.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
+            <a href="/index.html" class="rounded-md  hover:bg-gray-700  px-3 py-2 text-sm font-medium text-white" aria-current="page">Home</a>
+            <a href="/src/howitworks.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">How does it work?</a>
+            <a href="/src/become-lender.html" class="rounded-md px-3 py-2 text-sm font-medium bg-gray-900 text-gray-300 hover:text-white">Become a lender</a>
+            <a href="/src/register.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
+            <a href="/src/History.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">History</a>
+            <a href="/src/watch-list.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Watch List</a>
           </div>
         </div>
       </nav>
 </header>
+<div class="filter-buttons flex justify-center gap-4 my-4">
+  <button data-filter="all" class="filter-btn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">All</button>
+  <button data-filter="women" class="filter-btn bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Women</button>
+  <button data-filter="men" class="filter-btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Men</button>
+  <button data-filter="kids" class="filter-btn bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">Kids</button>
+</div>
 
 <div class="searchBox flex items-center bg-gray-100 p-4 rounded-lg shadow-lg">
   <input class="searchInput flex-grow p-2 rounded-l-lg border border-gray-300 focus:outline-none" type="text" name="" placeholder="Search something">
@@ -138,14 +149,15 @@
     <main class="container mx-auto p-6">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             <!-- Item 1 -->
-            <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300">
+            <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300" data-category="women">
               <img class="w-full h-48 object-cover rounded-t-lg" src="/images/listing-placeholder1.png" alt="Item 1">
               <div class="mt-4">
+               
                   <h2 class="text-lg font-semibold">Igorot-Insipred Gown</h2>
                   <p class="text-gray-600 mt-2">Dresses</p>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-gray-800 font-bold">100 Pesos</span>
-                        <a href="/src/listing-page.html" class="inline-block">
+                        <a href="/project_gaia/src/listing-page.html" class="inline-block">
                             <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">View</button>
                         </a>
                     </div>
@@ -153,7 +165,7 @@
             </div>
 
             <!-- Item 2 -->
-            <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300">
+            <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300" data-category="men">
               <img class="w-full h-48 object-cover rounded-t-lg" src="/images/Chris evans.jpg" alt="Item 2">
               <div class="mt-4">
                   <h2 class="text-lg font-semibold">Mykel Sidor</h2>
@@ -167,7 +179,7 @@
               </div>
           </div>
 
-            <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300">
+          <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300" data-category="men">
               <img class="w-full h-48 object-cover rounded-t-lg" src="/images/Barong.jpg" alt="Item 3">
               <div class="mt-4">
                   <h2 class="text-lg font-semibold">Barong Tagalog</h2>
@@ -181,7 +193,7 @@
           </div>
 
 
-          <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300">
+          <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300" data-category="women">
             <img class="w-full h-48 object-cover rounded-t-lg" src="/images/Saya.jpg" alt="Item 2">
             <div class="mt-4">
                 <h2 class="text-lg font-semibold">Baro't Saya</h2>
@@ -194,7 +206,7 @@
             </div>
         </div>
 
-        <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300">
+        <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300" data-category="women">
           <img class="w-full h-48 object-cover rounded-t-lg" src="/images/Evening Gown.png" alt="Item 2">
           <div class="mt-4">
               <h2 class="text-lg font-semibold">Evening Gown</h2>
@@ -207,7 +219,7 @@
           </div>
       </div>
 
-      <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300">
+      <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300" data-category="men">
         <img class="w-full h-48 object-cover rounded-t-lg" src="/images/Tuxedo.png" alt="Item 2">
         <div class="mt-4">
             <h2 class="text-lg font-semibold">Tuxedo</h2>
@@ -220,7 +232,7 @@
         </div>
     </div>
 
-    <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300">
+    <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300" data-category="men">
       <img class="w-full h-48 object-cover rounded-t-lg" src="/images/blackpants.png" alt="Item 2">
       <div class="mt-4">
           <h2 class="text-lg font-semibold">Black Pants</h2>
@@ -233,7 +245,7 @@
       </div>
   </div>
 
-  <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300">
+  <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300" data-category="men">
     <img class="w-full h-48 object-cover rounded-t-lg" src="/images/blazers.png" alt="Item 2">
     <div class="mt-4">
         <h2 class="text-lg font-semibold">Men's Blazers</h2>
@@ -246,7 +258,7 @@
     </div>
 </div>
 
-<div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300">
+<div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300" data-category="women">
   <img class="w-full h-48 object-cover rounded-t-lg" src="/images/WeddingGown.png" alt="Item 2">
   <div class="mt-4">
       <h2 class="text-lg font-semibold">Wedding Gown</h2>
@@ -259,7 +271,7 @@
   </div>
 </div>
 
-<div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300">
+<div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition duration-300" data-category="kids">
   <img class="w-full h-48 object-cover rounded-t-lg" src="https://via.placeholder.com/150" alt="Item 2">
   <div class="mt-4">
       <h2 class="text-lg font-semibold">HEHE</h2>
