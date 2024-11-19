@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/output.css">
+    <title>Document</title>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Main container -->
+    <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8 mt-8">
+
+        <!-- Page Header -->
+        <h1 class="text-3xl font-semibold text-gray-900 mb-6">Create a Listing</h1>
+
+        <!-- Form -->
+        <form action="#" method="POST">
+
+            <!-- Step 1: Product Details -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <label for="product-name" class="text-gray-700 text-lg">Product Name</label>
+                    <span class="text-sm text-gray-500">e.g., Mountain Province-weaved gown</span>
+                </div>
+                <input id="product-name" type="text" class="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter product name">
+
+                <div class="flex items-center justify-between">
+                    <label for="product-description" class="text-gray-700 text-lg">Product Description</label>
+                    <span class="text-sm text-gray-500">Describe your product in detail</span>
+                </div>
+                <textarea id="product-description" rows="5" class="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter a detailed product description"></textarea>
+            </div>
+
+            <!-- Step 2: Category and Condition -->
+            <div class="mt-6 space-y-4">
+                <div class="flex items-center justify-between">
+                    <label for="category" class="text-gray-700 text-lg">Category</label>
+                    <span class="text-sm text-gray-500">Select a category for your product</span>
+                </div>
+                <select id="category" class="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="" disabled selected>Select category</option>
+                    <option value="for-men">For Men</option>
+                    <option value="for-women">For Women</option>
+                    <option value="for-child-male">For Child(Male)</option>
+                    <option value="for-child-female">For Child(Female)</option>
+                    <!-- Add more options as needed -->
+                </select>
+
+                <div class="flex items-center justify-between">
+                    <label for="condition" class="text-gray-700 text-lg">Shop Term</label>
+                    <span class="text-sm text-gray-500">Will you post it for rent? for Sale? or both?</span>
+                </div>
+                <select id="condition" class="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="" disabled selected>Select term</option>
+                    <option value="rent">For Rent Only</option>
+                    <option value="sale">For Sale Only</option>
+                    <option value="rent-sale">Both For rent of For Sale</option>
+                </select>
+            </div>
+
+            <!-- Step 3: Pricing -->
+            <div id="rent-select">
+            <div class="mt-6 space-y-1">
+                <div class="flex items-center justify-between">
+                    <label for="rent-price" class="text-gray-700 text-lg"> Rent Price</label>
+                    <span class="text-sm text-gray-500">What will be the renting price?</span>
+                </div>
+                <input id="rent-price" type="number" class="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter rent price" min="0">
+            </div>
+            <div id="sell-select" class="mt-5">
+                <div class="flex items-center justify-between space-y-1">
+                    <label for="sell-price" class="text-gray-700 text-lg">Selling Price</label>
+                    <span class="text-sm text-gray-500">What will be the selling price?</span>
+                </div>
+                <input id="sell-price" type="number" class="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter selling price" min="0">
+            </div>
+                
+                <div class="flex items-center justify-between">
+                    <label for="shipping" class="text-gray-700 text-lg">Shipping Options</label>
+                    <span class="text-sm text-gray-500">How will you ship the item?</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <input type="radio" id="free-shipping" name="shipping" class="text-blue-500">
+                        <label for="free-shipping" class="text-gray-700 ml-2">Free Shipping</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="radio" id="paid-shipping" name="shipping" class="text-blue-500">
+                        <label for="paid-shipping" class="text-gray-700 ml-2">Paid Shipping</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Photos -->
+            <div class="mt-6 space-y-4">
+                <div class="flex items-center justify-between">
+                    <label for="photos" class="text-gray-700 text-lg">Photos</label>
+                    <span class="text-sm text-gray-500">Upload up to 5 images</span>
+                </div>
+                <input type="file" id="photos" accept="image/*" class="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <!-- Step 5: Review & Submit -->
+            <div class="mt-6">
+                <button type="submit" class="w-full py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Create Listing
+                </button>
+            </div>
+        </form>
+    </div>
+
+     <!-- JavaScript for sell only --> 
+     <!-- Still WIP some elements not working-->
+     <script>
+        document.getElementById('condition').addEventListener('change', function() {
+            const termRent = document.getElementById('rent');
+
+            if (this.value === 'sale') {
+                termRent.classList.remove('hidden');
+            } 
+            else {
+                termRent.classList.add('hidden');
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('condition').addEventListener('change',function(){
+            const termSell = document.getElementById('rent');
+            
+        })
+    </script>
+    
+</body>
+</html>
