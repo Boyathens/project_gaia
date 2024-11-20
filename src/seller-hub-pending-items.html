@@ -120,56 +120,77 @@
 
         <!-- Main Content -->
         <div class="flex-auto ">
-             <!-- Statistics Container -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-          <!-- Items Sold & Revenue Stats -->
-          <div class="bg-white p-6 rounded-lg shadow-md flex-auto">
-              <h3 class="text-xl font-semibold text-gray-800 mb-4">Items Sold & Revenue</h3>
-              <div class="space-y-4">
-                  <!-- Placeholder for graphical representation -->
-                  <div class="h-40 bg-gray-200 rounded-md flex justify-center items-center">
-                      <span class="text-gray-500">Chart Placeholder (Items Sold)</span>
-                  </div>
-                  <div class="text-center">
-                      <p class="text-2xl font-bold text-blue-600">$4,500</p>
-                      <p class="text-sm text-gray-600">Revenue This Month</p>
-                  </div>
-              </div>
-          </div>
+            <div class="container mx-auto p-8">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-6">Rented Items</h2>
         
-
-          <!-- Pending Orders Stats -->
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Pending Orders</h3>
-            <div class="space-y-4">
-                <!-- Placeholder for graphical representation -->
-                <div class="h-40 bg-gray-200 rounded-md flex justify-center items-center">
-                    <span class="text-gray-500">Chart Placeholder (Pending Orders)</span>
-                </div>
-                <div class="text-center">
-                    <p class="text-2xl font-bold text-yellow-600">12</p>
-                    <p class="text-sm text-gray-600">Orders Pending</p>
+                <!-- Rented Items List -->
+                <div id="rentedItemsList">
+                    <!-- Example of rented item entry -->
+                    <div class="flex bg-white p-4 mb-4 rounded-lg shadow-md">
+                        <img src="https://via.placeholder.com/120" alt="Item Image" class="w-30 h-30 object-cover rounded-lg mr-4">
+                        <div class="flex-grow flex flex-col justify-between">
+                            <div class="font-semibold text-xl text-gray-800">Mountain Province Gown</div>
+                            <div class="text-sm text-gray-600">Rented by: John Doe</div>
+                            <div class="font-medium text-blue-600">$50</div>
+                            <div class="text-sm text-red-600">Return Date: 2024-11-30</div>
+                        </div>
+                    </div>
+                    <!-- More items will be inserted here dynamically -->
                 </div>
             </div>
-        </div>
-
-        <!-- Released Goods & Items to Return Stats -->
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold text-gray-800 mb-4">Released Goods & Items to Return</h3>
-          <div class="space-y-4">
-              <!-- Placeholder for graphical representation -->
-              <div class="h-40 bg-gray-200 rounded-md flex justify-center items-center">
-                  <span class="text-gray-500">Chart Placeholder (Released Goods)</span>
-              </div>
-              <div class="space-y-4 text-center">
-                  <p class="text-2xl font-bold text-green-600">30</p>
-                  <p class="text-sm text-gray-600">Goods Released</p>
-                  <p class="text-2xl font-bold text-red-600">5</p>
-                  <p class="text-sm text-gray-600">Items to Return</p>
-              </div>
-          </div>
-      </div>
+        
+            <script>
+                // Example data for rented items
+                const rentedItems = [
+                    {
+                        imageUrl: "https://via.placeholder.com/120",
+                        title: "Mountain Province Gown",
+                        rentedBy: "John Doe",
+                        price: 50,
+                        returnDate: "2024-11-30"
+                    },
+                    {
+                        imageUrl: "https://via.placeholder.com/120",
+                        title: "Leather Jacket",
+                        rentedBy: "Jane Smith",
+                        price: 30,
+                        returnDate: "2024-12-05"
+                    },
+                    {
+                        imageUrl: "https://via.placeholder.com/120",
+                        title: "Vintage Watch",
+                        rentedBy: "Alice Johnson",
+                        price: 100,
+                        returnDate: "2024-12-10"
+                    }
+                ];
+        
+                // Function to dynamically render rented items list
+                function renderRentedItems(items) {
+                    const rentedItemsList = document.getElementById('rentedItemsList');
+                    rentedItemsList.innerHTML = ''; // Clear previous items
+        
+                    items.forEach(item => {
+                        const rentedItemDiv = document.createElement('div');
+                        rentedItemDiv.classList.add('flex', 'bg-white', 'p-4', 'mb-4', 'rounded-lg', 'shadow-md');
+        
+                        rentedItemDiv.innerHTML = `
+                            <img src="${item.imageUrl}" alt="Item Image" class="w-30 h-30 object-cover rounded-lg mr-4">
+                            <div class="flex-grow flex flex-col justify-between">
+                                <div class="font-semibold text-xl text-gray-800">${item.title}</div>
+                                <div class="text-sm text-gray-600">Rented by: ${item.rentedBy}</div>
+                                <div class="font-medium text-blue-600">$${item.price}</div>
+                                <div class="text-sm text-red-600">Return Date: ${item.returnDate}</div>
+                            </div>
+                        `;
+        
+                        rentedItemsList.appendChild(rentedItemDiv);
+                    });
+                }
+        
+                // Call the function to render items
+                renderRentedItems(rentedItems);
+            </script>
     </div>
   </div>
 

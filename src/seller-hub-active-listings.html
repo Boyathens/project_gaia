@@ -101,7 +101,7 @@
         <div class="w-50 h-screen bg-gray-800 text-white p-10 ">
             <ul class="space-y-6">
                 <li>
-                    <a href="#" class="hover:bg-gray-700 p-2 rounded transition">Active Listings</a>
+                    <a href="/src/seller-hub-active-listings.html" class="hover:bg-gray-700 p-2 rounded transition">Active Listings</a>
                 </li>
                 <li>
                     <a href="/src/seller-hub-create-listing.html" class="hover:bg-gray-700 p-2 rounded transition">Create a Listing</a>
@@ -120,56 +120,75 @@
 
         <!-- Main Content -->
         <div class="flex-auto ">
-             <!-- Statistics Container -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-          <!-- Items Sold & Revenue Stats -->
-          <div class="bg-white p-6 rounded-lg shadow-md flex-auto">
-              <h3 class="text-xl font-semibold text-gray-800 mb-4">Items Sold & Revenue</h3>
-              <div class="space-y-4">
-                  <!-- Placeholder for graphical representation -->
-                  <div class="h-40 bg-gray-200 rounded-md flex justify-center items-center">
-                      <span class="text-gray-500">Chart Placeholder (Items Sold)</span>
-                  </div>
-                  <div class="text-center">
-                      <p class="text-2xl font-bold text-blue-600">$4,500</p>
-                      <p class="text-sm text-gray-600">Revenue This Month</p>
-                  </div>
-              </div>
-          </div>
+            <div class="container mx-auto p-8">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-6">Active Listings for Rent</h2>
         
-
-          <!-- Pending Orders Stats -->
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Pending Orders</h3>
-            <div class="space-y-4">
-                <!-- Placeholder for graphical representation -->
-                <div class="h-40 bg-gray-200 rounded-md flex justify-center items-center">
-                    <span class="text-gray-500">Chart Placeholder (Pending Orders)</span>
-                </div>
-                <div class="text-center">
-                    <p class="text-2xl font-bold text-yellow-600">12</p>
-                    <p class="text-sm text-gray-600">Orders Pending</p>
+                <!-- Active Listings Grid -->
+                <div id="activeListings" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                    <!-- Listing Cards will be inserted here dynamically -->
                 </div>
             </div>
-        </div>
-
-        <!-- Released Goods & Items to Return Stats -->
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold text-gray-800 mb-4">Released Goods & Items to Return</h3>
-          <div class="space-y-4">
-              <!-- Placeholder for graphical representation -->
-              <div class="h-40 bg-gray-200 rounded-md flex justify-center items-center">
-                  <span class="text-gray-500">Chart Placeholder (Released Goods)</span>
-              </div>
-              <div class="space-y-4 text-center">
-                  <p class="text-2xl font-bold text-green-600">30</p>
-                  <p class="text-sm text-gray-600">Goods Released</p>
-                  <p class="text-2xl font-bold text-red-600">5</p>
-                  <p class="text-sm text-gray-600">Items to Return</p>
-              </div>
-          </div>
-      </div>
+        
+            <script>
+                // Example data for active listings
+                const activeListings = [
+                    {
+                        id: 1,
+                        imageUrl: "https://via.placeholder.com/250",
+                        title: "Mountain Province Gown",
+                        price: 50,
+                        listingUrl: "/view-listing.html?id=1"
+                    },
+                    {
+                        id: 2,
+                        imageUrl: "https://via.placeholder.com/250",
+                        title: "Leather Jacket",
+                        price: 30,
+                        listingUrl: "/view-listing.html?id=2"
+                    },
+                    {
+                        id: 3,
+                        imageUrl: "https://via.placeholder.com/250",
+                        title: "Vintage Watch",
+                        price: 100,
+                        listingUrl: "/view-listing.html?id=3"
+                    },
+                    {
+                        id: 4,
+                        imageUrl: "https://via.placeholder.com/250",
+                        title: "Luxury Sofa",
+                        price: 200,
+                        listingUrl: "/view-listing.html?id=4"
+                    }
+                ];
+        
+                // Function to render active listings
+                function renderActiveListings(listings) {
+                    const activeListingsContainer = document.getElementById('activeListings');
+                    activeListingsContainer.innerHTML = ''; // Clear previous listings
+        
+                    listings.forEach(listing => {
+                        const listingCard = document.createElement('div');
+                        listingCard.classList.add('bg-white', 'rounded-lg', 'shadow-lg', 'overflow-hidden', 'text-center');
+        
+                        listingCard.innerHTML = `
+                            <img src="${listing.imageUrl}" alt="Item Image" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-xl font-semibold text-gray-800">${listing.title}</h3>
+                                <p class="text-lg font-medium text-blue-600">$${listing.price} per day</p>
+                                <a href="${listing.listingUrl}" class="inline-block mt-4 py-2 px-6 bg-blue-600 text-white rounded-full text-sm hover:bg-blue-700">
+                                    View Details
+                                </a>
+                            </div>
+                        `;
+        
+                        activeListingsContainer.appendChild(listingCard);
+                    });
+                }
+        
+                // Call the function to render active listings
+                renderActiveListings(activeListings);
+            </script>
     </div>
   </div>
 

@@ -3,12 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/output.css">
     <title>Document</title>
-</head>
-<body class="bg-gray-100">
+    <link rel="stylesheet" href="/css/output.css">
 
-    <!-- Main container -->
+</head>
+<body>
+    <body class="bg-gray-100">
+        <header>
+            <nav class="bg-gray-800">
+                <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                  <div class="relative flex h-16 items-center justify-between">
+                    <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                      <!-- Mobile menu button-->
+                      <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="absolute -inset-0.5"></span>
+                        <span class="sr-only">Open main menu</span>
+                        <!--
+                          Icon when menu is closed.
+              
+                          Menu open: "hidden", Menu closed: "block"
+                        -->
+                        <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                        <!--
+                          Icon when menu is open.
+              
+                          Menu open: "block", Menu closed: "hidden"
+                        -->
+                        <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                      <div class="flex flex-shrink-0 items-center">
+                        <h3 class="text-gray-100">Project:Gaia</h3>
+                      </div>
+                      <div class="hidden sm:ml-6 sm:block">
+                        <div class="flex space-x-4">
+                          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                          <a href="/index.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 bg-gray-800 text-gray-300  hover:text-white">Home</a>
+                          <a href="/src/seller-hub-main.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 bg-gray-800 text-gray-300  hover:text-white">Seller Hub</a>
+                          <a href="/src/become-lender.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 text-gray-300 hover:text-white">Purchase History</a>
+                          <a href="/src/register.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Watch List</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                      <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                        <span class="absolute -inset-1.5"></span>
+                        <span class="sr-only">View notifications</span>
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                        </svg>
+                      </button>
+              
+                      <!-- Profile dropdown -->
+                      <div class="relative ml-3">
+                        <div>
+                          <a href="/src/login.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Hello! #seller </a>
+                        </div>
+              
+                        <!--
+                          Dropdown menu, show/hide based on menu state.
+              
+                          Entering: "transition ease-out duration-100"
+                            From: "transform opacity-0 scale-95"
+                            To: "transform opacity-100 scale-100"
+                          Leaving: "transition ease-in duration-75"
+                            From: "transform opacity-100 scale-100"
+                            To: "transform opacity-0 scale-95"
+                        -->
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Mobile menu, show/hide based on menu state. -->
+                <div class="sm:hidden" id="mobile-menu">
+                  <div class="space-y-1 px-2 pb-3 pt-2">
+                    <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                    <a href="/index.html" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Home</a>
+                    <a href="/src/howitworks.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">How does it work?</a>
+                    <a href="/src/become-lender.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Become a lender</a>
+                    <a href="/src/register.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
+                  </div>
+                </div>
+              </nav>
+        </header>
+
+
+    <!-- Sidebar -->
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-50 h-screen bg-gray-800 text-white p-10 ">
+            <ul class="space-y-6">
+                <li>
+                    <a href="#" class="hover:bg-gray-700 p-2 rounded transition">Active Listings</a>
+                </li>
+                <li>
+                    <a href="/src/seller-hub-create-listing.html" class="hover:bg-gray-700 p-2 rounded transition">Create a Listing</a>
+                </li>
+                <li>
+                    <a href="/src/seller-hub-pending-items.html" class="hover:bg-gray-700 p-2 rounded transition">Pending Rentals</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:bg-gray-700 p-2 rounded transition">Inactive Listings</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:bg-gray-700 p-2 rounded transition">Messenger</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-auto ">
+              <!-- Main container -->
     <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-8 mt-8">
 
         <!-- Page Header -->
@@ -76,21 +188,7 @@
                 <input id="sell-price" type="number" class="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter selling price" min="0">
             </div>
                 
-                <div class="flex items-center justify-between">
-                    <label for="shipping" class="text-gray-700 text-lg">Shipping Options</label>
-                    <span class="text-sm text-gray-500">How will you ship the item?</span>
-                </div>
-                <div class="flex items-center space-x-4">
-                    <div class="flex items-center">
-                        <input type="radio" id="free-shipping" name="shipping" class="text-blue-500">
-                        <label for="free-shipping" class="text-gray-700 ml-2">Free Shipping</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input type="radio" id="paid-shipping" name="shipping" class="text-blue-500">
-                        <label for="paid-shipping" class="text-gray-700 ml-2">Paid Shipping</label>
-                    </div>
-                </div>
-            </div>
+                
 
             <!-- Step 4: Photos -->
             <div class="mt-6 space-y-4">
@@ -103,33 +201,77 @@
 
             <!-- Step 5: Review & Submit -->
             <div class="mt-6">
-                <button type="submit" class="w-full py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button id="createListingButton" type="button" class="w-full py-3 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     Create Listing
                 </button>
             </div>
         </form>
     </div>
 
-     <!-- JavaScript for sell only --> 
-     <!-- Still WIP some elements not working-->
-     <script>
-        document.getElementById('condition').addEventListener('change', function() {
-            const termRent = document.getElementById('rent');
+     <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+            <h2 class="text-xl font-semibold text-gray-800">Confirm Your Listing</h2>
+            <p class="text-gray-600 mt-4">Are you sure you want to create this listing?</p>
+            <div class="mt-6 flex justify-end space-x-4">
+                <button id="cancelButton" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400">Cancel</button>
+                <button id="confirmButton" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Confirm</button>
+            </div>
+        </div>
+    </div>
 
-            if (this.value === 'sale') {
-                termRent.classList.remove('hidden');
+
+     <!--Script for rent/sale selection-->
+     <script>
+        // Get references to the dropdown and textbox elements
+        const optionsDropdown = document.getElementById("condition");
+        const sellSelect = document.getElementById("rent-price");
+        const rentSelect = document.getElementById("sell-price");
+
+        // Event listener to detect change in dropdown selection
+        optionsDropdown.addEventListener("change", function() {
+            // If the selected option is "disable", disable the textbox
+            if (this.value === "rent") {
+                rentSelect.disabled = true;
+                sellSelect.disabled = false;
             } 
-            else {
-                termRent.classList.add('hidden');
+            else if (this.value === "sale") {
+                sellSelect.disabled = true;
+                rentSelect.disabled = false;
+            }else {
+                // Otherwise, enable the textbox
+                sellSelect.disabled = false;
+                rentSelect.disabled = false;
             }
         });
-    </script>
+        </script>
+
+      <!-- JavaScript for form and modal functionality -->
     <script>
-        document.getElementById('condition').addEventListener('change',function(){
-            const termSell = document.getElementById('rent');
-            
-        })
+        // Get references to the form, modal, and buttons
+        const createListingButton = document.getElementById('createListingButton');
+        const confirmationModal = document.getElementById('confirmationModal');
+        const cancelButton = document.getElementById('cancelButton');
+        const confirmButton = document.getElementById('confirmButton');
+        const form = document.getElementById('listingForm');
+
+        // When the "Create Listing" button is clicked
+        createListingButton.addEventListener('click', function() {
+            confirmationModal.classList.remove('hidden'); // Show confirmation modal
+        });
+
+        // If the user cancels, hide the modal
+        cancelButton.addEventListener('click', function() {
+            confirmationModal.classList.add('hidden');
+        });
+
+        // If the user confirms, submit the form and redirect
+        confirmButton.addEventListener('click', function() {
+            confirmationModal.classList.add('hidden');
+            window.location.href = 'seller-hub-main.html'; // Redirect to seller hub page
+        });
     </script>
-    
 </body>
 </html>
+
+
