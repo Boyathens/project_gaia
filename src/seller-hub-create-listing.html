@@ -86,9 +86,9 @@
                   <div class="space-y-1 px-2 pb-3 pt-2">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                     <a href="/index.html" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Home</a>
-                    <a href="/src/howitworks.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">How does it work?</a>
-                    <a href="/src/become-lender.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Become a lender</a>
-                    <a href="/src/register.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
+                    <a href="/src/howitworks.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Seller Hub</a>
+                    <a href="/src/become-lender.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">History</a>
+                    <a href="/src/register.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Watch list</a>
                   </div>
                 </div>
               </nav>
@@ -98,10 +98,10 @@
     <!-- Sidebar -->
     <div class="flex">
         <!-- Sidebar -->
-        <div class="w-50 h-screen bg-gray-800 text-white p-10 ">
+        <div class="w-64 h-screen bg-gray-800 text-white p-10 ">
             <ul class="space-y-6">
                 <li>
-                    <a href="#" class="hover:bg-gray-700 p-2 rounded transition">Active Listings</a>
+                    <a href="/src/seller-hub-active-listings.html" class="hover:bg-gray-700 p-2 rounded transition">Active Listings</a>
                 </li>
                 <li>
                     <a href="/src/seller-hub-create-listing.html" class="hover:bg-gray-700 p-2 rounded transition">Create a Listing</a>
@@ -110,14 +110,14 @@
                     <a href="/src/seller-hub-pending-items.html" class="hover:bg-gray-700 p-2 rounded transition">Pending Rentals</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:bg-gray-700 p-2 rounded transition">Inactive Listings</a>
+                    <a href="/src/seller-hub-inactive-listings.html" class="hover:bg-gray-700 p-2 rounded transition">Inactive Listings</a>
                 </li>
                 <li>
                     <a href="#" class="hover:bg-gray-700 p-2 rounded transition">Messenger</a>
                 </li>
             </ul>
         </div>
-
+    
         <!-- Main Content -->
         <div class="flex-auto ">
               <!-- Main container -->
@@ -209,7 +209,7 @@
     </div>
 
      <!-- Confirmation Modal -->
-    <div id="confirmationModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center hidden">
+    <div id="confirmationModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex-auto justify-center items-center hidden">
         <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
             <h2 class="text-xl font-semibold text-gray-800">Confirm Your Listing</h2>
             <p class="text-gray-600 mt-4">Are you sure you want to create this listing?</p>
@@ -219,7 +219,7 @@
             </div>
         </div>
     </div>
-
+</div>
 
      <!--Script for rent/sale selection-->
      <script>
@@ -247,30 +247,85 @@
         </script>
 
       <!-- JavaScript for form and modal functionality -->
-    <script>
+      <script>
         // Get references to the form, modal, and buttons
         const createListingButton = document.getElementById('createListingButton');
         const confirmationModal = document.getElementById('confirmationModal');
         const cancelButton = document.getElementById('cancelButton');
         const confirmButton = document.getElementById('confirmButton');
-        const form = document.getElementById('listingForm');
-
+        const form = document.querySelector('form'); // Getting the form
+    
+        // Get references to the form fields
+        const productName = document.getElementById('product-name');
+        const productDescription = document.getElementById('product-description');
+        const category = document.getElementById('category');
+        const condition = document.getElementById('condition');
+        const rentPrice = document.getElementById('rent-price');
+        const sellPrice = document.getElementById('sell-price');
+        const photos = document.getElementById('photos');
+    
         // When the "Create Listing" button is clicked
         createListingButton.addEventListener('click', function() {
-            confirmationModal.classList.remove('hidden'); // Show confirmation modal
+            // Show confirmation modal
+            confirmationModal.classList.remove('hidden');
         });
-
+    
         // If the user cancels, hide the modal
         cancelButton.addEventListener('click', function() {
             confirmationModal.classList.add('hidden');
         });
-
-        // If the user confirms, submit the form and redirect
+    
+        // If the user confirms, submit the form and store the data in localStorage
         confirmButton.addEventListener('click', function() {
-            confirmationModal.classList.add('hidden');
-            window.location.href = 'seller-hub-main.html'; // Redirect to seller hub page
+            // Prepare the listing data
+            const listingData = {
+                productName: productName.value,
+                productDescription: productDescription.value,
+                category: category.value,
+                condition: condition.value,
+                rentPrice: rentPrice.value,
+                sellPrice: sellPrice.value,
+            };
+    
+            // Convert the image file to base64 if selected
+            const imageFile = photos.files[0];
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onloadend = function() {
+                    listingData.image = reader.result; // Store the base64 image string
+    
+                    // Get existing listings from localStorage, or create an empty array
+                    let listings = JSON.parse(localStorage.getItem('listings')) || [];
+    
+                    // Add the new listing to the array
+                    listings.push(listingData);
+    
+                    // Save the updated listings array to localStorage
+                    localStorage.setItem('listings', JSON.stringify(listings));
+    
+                    // Hide the modal and redirect to seller hub page
+                    confirmationModal.classList.add('hidden');
+                    window.location.href = 'seller-hub-main.html'; // Redirect to seller hub page
+                };
+    
+                // Read the image file as base64
+                reader.readAsDataURL(imageFile);
+            } else {
+                // If no image is selected, proceed without it
+                let listings = JSON.parse(localStorage.getItem('listings')) || [];
+                listings.push(listingData);
+    
+                // Save the updated listings array to localStorage
+                localStorage.setItem('listings', JSON.stringify(listings));
+    
+                // Hide the modal and redirect to seller hub page
+                confirmationModal.classList.add('hidden');
+                window.location.href = 'seller-hub-main.html'; // Redirect to seller hub page
+            }
         });
     </script>
+    
+    
 </body>
 </html>
 
