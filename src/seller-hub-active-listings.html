@@ -42,7 +42,7 @@
                       <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                          <a href="/index.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 bg-gray-800 text-gray-300  hover:text-white">Home</a>
+                          <a href="/src/client-login.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 bg-gray-800 text-gray-300  hover:text-white">Home</a>
                           <a href="/src/seller-hub-main.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 bg-gray-800 text-gray-300  hover:text-white">Seller Hub</a>
                           <a href="/src/become-lender.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 text-gray-300 hover:text-white">Purchase History</a>
                           <a href="/src/register.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Watch List</a>
@@ -84,9 +84,9 @@
                 <div class="sm:hidden" id="mobile-menu">
                   <div class="space-y-1 px-2 pb-3 pt-2">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                    <a href="/index.html" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Home</a>
+                    <a href="/src/client-login.html" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Home</a>
                     <a href="/src/howitworks.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">How does it work?</a>
-                    <a href="/src/become-lender.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Become a lender</a>
+                    <a href="/src/History.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Become a lender</a>
                     <a href="/src/register.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
                   </div>
                 </div>
@@ -128,7 +128,10 @@
                 </div>
             </div>
         
-            <script>
+
+
+
+            <!-- <script>
                 // Example data for active listings
                 const activeListings = [
                     {
@@ -187,10 +190,82 @@
         
                 // Call the function to render active listings
                 renderActiveListings(activeListings);
-            </script>
+            </script> -->
     </div>
   </div>
 
     </div>
+
+
+    <script>
+      // Function to render active listings
+      function renderActiveListings() {
+          const activeListingsContainer = document.getElementById('activeListings');
+          activeListingsContainer.innerHTML = ''; // Clear previous listings
+  
+          // Fetch data from localStorage
+          const listingsData = localStorage.getItem('listings');
+          const listings = listingsData ? JSON.parse(listingsData) : [];
+  
+          if (listings.length === 0) {
+              activeListingsContainer.innerHTML = '<p class="text-gray-500">No active listings available.</p>';
+              return;
+          }
+  
+          listings.forEach(listing => {
+              const listingCard = document.createElement('div');
+              listingCard.classList.add('bg-white', 'rounded-lg', 'shadow-lg', 'overflow-hidden', 'text-center');
+  
+
+            const image = listing.image ? `<img src="${listing.image}" alt="${listing.productName}" class="w-full h-48 object-cover rounded-md">` : '';
+              listingCard.innerHTML = `
+                  ${image}
+                  
+                  <div class="p-4">
+                    <p class="text-gray-700 mt-2">${listing.category}</p>
+                      <h3 class="text-xl font-semibold text-gray-800">${listing.productName}</h3>
+                      <p class="text-lg font-medium text-gray-600"> ${listing.condition}
+                        ${listing.rentPrice ? `<p class="text-gray-700 mt-2">Rent Price: $${listing.rentPrice}</p>` : ''}
+                        ${listing.sellPrice ? `<p class="text-gray-700 mt-2">Selling Price: $${listing.sellPrice}</p>` : ''} 
+                      <a href="#" class="inline-block mt-4 py-2 px-6 bg-blue-600 text-white rounded-full text-sm hover:bg-blue-700" id="deactive-btn">
+                          Deactivate Listing
+                      </a>
+                  </div>
+              `;
+  
+              activeListingsContainer.appendChild(listingCard);
+          });
+      }
+  
+      // Call the function to render active listings
+      renderActiveListings();
+  </script>
+
+<script>
+  // Function to deactivate listing
+  function deactivateListing() {
+      const deactivateBtn = document.getElementById('deactive-btn');
+      deactivateBtn.addEventListener('click', () => {
+          // Get the listing ID from the parent element
+          const listingId = deactivateBtn.parentNode.parentNode.parentNode.id;
+
+          // Fetch listings from localStorage
+          const listingsData = localStorage.getItem('listings');
+          const listings = listingsData ? JSON.parse(listingsData) : [];
+
+          // Filter out the listing to deactivate
+          const updatedListings = listings.filter(listing => listing.id != listingId);
+
+          // Update localStorage with the new listings array
+          localStorage.setItem('listings', JSON.stringify(updatedListings));
+
+          // Optionally, refresh the displayed listings
+          renderActiveListings(); // Call the function to re-render listings
+      });
+  }
+
+  // Call the deactivateListing function to set up the event listener
+  deactivateListing();
+</script>
 </body>
 </html>

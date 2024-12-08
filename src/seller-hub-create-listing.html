@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/output.css">
+    <script src="/src/Filter.js"></script>
 
 </head>
 <body>
@@ -43,7 +44,7 @@
                       <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                          <a href="/index.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 bg-gray-800 text-gray-300  hover:text-white">Home</a>
+                          <a href="/src/client-login.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 bg-gray-800 text-gray-300  hover:text-white">Home</a>
                           <a href="/src/seller-hub-main.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 bg-gray-800 text-gray-300  hover:text-white">Seller Hub</a>
                           <a href="/src/become-lender.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 text-gray-300 hover:text-white">Purchase History</a>
                           <a href="/src/register.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Watch List</a>
@@ -85,10 +86,10 @@
                 <div class="sm:hidden" id="mobile-menu">
                   <div class="space-y-1 px-2 pb-3 pt-2">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                    <a href="/index.html" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Home</a>
-                    <a href="/src/howitworks.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Seller Hub</a>
-                    <a href="/src/become-lender.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">History</a>
-                    <a href="/src/register.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Watch list</a>
+                    <a href="/src/client-login.html" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Home</a>
+                    <a href="/src/seller-hub-main.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Seller Hub</a>
+                    <a href="/src/History.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">History</a>
+                    <a href="/src/watch-list.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Watch list</a>
                   </div>
                 </div>
               </nav>
@@ -152,10 +153,10 @@
                 </div>
                 <select id="category" class="w-full p-3 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="" disabled selected>Select category</option>
-                    <option value="for-men">For Men</option>
-                    <option value="for-women">For Women</option>
-                    <option value="for-child-male">For Child(Male)</option>
-                    <option value="for-child-female">For Child(Female)</option>
+                    <option value="for men">For Men</option>
+                    <option value="for women">For Women</option>
+                    <option value="for children (male)">For Child(Male)</option>
+                    <option value="for children (female)">For Child(Female)</option>
                     <!-- Add more options as needed -->
                 </select>
 
@@ -167,7 +168,7 @@
                     <option value="" disabled selected>Select term</option>
                     <option value="rent">For Rent Only</option>
                     <option value="sale">For Sale Only</option>
-                    <option value="rent-sale">Both For rent of For Sale</option>
+                    <option value="rent or sale">Both For rent of For Sale</option>
                 </select>
             </div>
 

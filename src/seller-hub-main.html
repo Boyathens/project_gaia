@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Project Gaia:Seller Hub</title>
     <link rel="stylesheet" href="/css/output.css">
 
 </head>
@@ -45,8 +45,8 @@
                           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                           <a href="/src/client-login.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 bg-gray-800 text-gray-300  hover:text-white">Home</a>
                           <a href="/src/seller-hub-main.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 bg-gray-800 text-gray-300  hover:text-white">Seller Hub</a>
-                          <a href="/src/become-lender.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 text-gray-300 hover:text-white">Purchase History</a>
-                          <a href="/src/register.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Watch List</a>
+                          <a href="/src/History.html" class="rounded-md px-3 py-2 text-sm font-medium hover:bg-gray-700 text-gray-300 hover:text-white">Purchase History</a>
+                          <a href="/src/watch-list.html" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Watch List</a>
                         </div>
                       </div>
                     </div>
@@ -62,7 +62,7 @@
                       <!-- Profile dropdown -->
                       <div class="relative ml-3">
                         <div>
-                          <a href="/src/login.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Hello! #seller </a>
+                          <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"></a>
                         </div>
               
                         <!--
@@ -86,9 +86,9 @@
                   <div class="space-y-1 px-2 pb-3 pt-2">
                     <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                     <a href="/src/client-login.html" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Home</a>
-                    <a href="/src/howitworks.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">How does it work?</a>
-                    <a href="/src/become-lender.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Become a lender</a>
-                    <a href="/src/register.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
+                    <a href="/src/seller-hub-main.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Seller Hub</a>
+                    <a href="/src/History.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Purchase History</a>
+                    <a href="/src/watch-list.html" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Watch List</a>
                   </div>
                 </div>
               </nav>
@@ -174,5 +174,20 @@
   </div>
 
     </div>
+
+     <!-- signed-in name script -->
+<script>
+  // Retrieve the username from localStorage
+const username = localStorage.getItem('username');
+
+// Check if the username exists
+if (username) {
+    // Display the welcome message
+    document.getElementById('welcome-message').textContent = `Hello! ${username}`;
+} else {
+    // If no username is found, redirect to the login page
+    window.location.href = 'login.html'; // Change this to your desired page
+}
+</script>
 </body>
 </html>

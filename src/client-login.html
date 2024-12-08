@@ -8,17 +8,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/css/output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-    <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"></script>
-  <script src="/src/Filter.js"></script>
+    <script src="/src/Filter.js"></script>
 
     
 
 </head>
 <body class="bg-gray-100">
-  <script type="module" src="main.js"></script>
+  
   
   <header>
     <nav class="bg-gray-800">
@@ -63,7 +59,7 @@
               </div>
             </div>
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+              <button type="button"  id="notification-btn" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                 <span class="absolute -inset-1.5"></span>
                 <span class="sr-only">View notifications</span>
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
@@ -71,22 +67,12 @@
                 </svg>
               </button>
       
-              <!-- Profile dropdown -->
+             
               <div class="relative ml-3">
                 <div>
-                  <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"id="welcome-message"></a>
+                  <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white" id="welcome-message"></a>
                 </div>
       
-                <!--
-                  Dropdown menu, show/hide based on menu state.
-      
-                  Entering: "transition ease-out duration-100"
-                    From: "transform opacity-0 scale-95"
-                    To: "transform opacity-100 scale-100"
-                  Leaving: "transition ease-in duration-75"
-                    From: "transform opacity-100 scale-100"
-                    To: "transform opacity-0 scale-95"
-                -->
                 
               </div>
             </div>
@@ -147,7 +133,7 @@
         
 
 <!-- Listings Container -->
-<div id="listings-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+<div id="listing-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
   <!-- Placeholder content will be replaced with listings -->
   <p class="text-center text-gray-500">Loading your listings...</p>
 </div>
@@ -191,66 +177,66 @@
   </footer>
   
 
-  <script>
-    // Get the username from the URL query parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const username = urlParams.get('username');
-
-    // If a username is found, display a welcome message
-    if (username) {
-        document.getElementById("welcome-message").textContent = `Hello, ${username}!`;
-    }
-</script>
+  <!-- signed-in name script -->
 <script>
-  // Get the listings container element
-  const listingsContainer = document.getElementById('listings-container');
+  // Retrieve the username from localStorage
+const username = localStorage.getItem('username');
 
-  // Retrieve the listings data from localStorage (as an array)
-  let listingsData = JSON.parse(localStorage.getItem('listingData')) || [];
-
-  if (listingsData.length > 0) {
-      // Clear the loading message if listings are found
-      listingsContainer.innerHTML = '';
-
-      // Loop through all listings and generate HTML for each
-      listingsData.forEach(listing => {
-          const listingHTML = `
-              <div class="bg-white shadow-md rounded-lg p-4">
-                  <h2 class="text-xl font-semibold text-gray-900">${listing.productName}</h2>
-                  <p class="text-gray-700 mt-2">${listing.productDescription}</p>
-                  <div class="mt-4">
-                      <strong class="text-lg text-gray-900">Category: </strong>
-                      <span class="text-gray-700">${listing.category}</span>
-                  </div>
-                  <div class="mt-4">
-                      <strong class="text-lg text-gray-900">Condition: </strong>
-                      <span class="text-gray-700">${listing.condition}</span>
-                  </div>
-                  <div class="mt-4">
-                      <strong class="text-lg text-gray-900">Price: </strong>
-                      <span class="text-gray-700">
-                          ${listing.condition === 'rent' ? 'Rent Price: ' + listing.rentPrice + ' /day' :
-                          listing.condition === 'sale' ? 'Sale Price: ' + listing.sellPrice :
-                          'Rent Price: ' + listing.rentPrice + ' /day, Sale Price: ' + listing.sellPrice}
-                      </span>
-                  </div>
-                  <div class="mt-4">
-                      <strong class="text-lg text-gray-900">Image: </strong>
-                      <div class="mt-2">
-                          <img src="${listing.image}" alt="${listing.productName}" class="w-full h-auto rounded-lg">
-                      </div>
-                  </div>
-              </div>
-          `;
-          
-          // Append the generated HTML to the listings container
-          listingsContainer.innerHTML += listingHTML;
-      });
-  } else {
-      // If no listings are available, show a fallback message
-      listingsContainer.innerHTML = '<p class="text-center text-gray-500">No listings found. Please create a listing.</p>';
-  }
+// Check if the username exists
+if (username) {
+    // Display the welcome message
+    document.getElementById('welcome-message').textContent = `Hello! ${username}`;
+} else {
+    // If no username is found, redirect to the login page
+    window.location.href = 'login.html'; // Change this to your desired page
+}
 </script>
+
+  <!--listing script -->
+  <script>
+    // Function to load and display listings from localStorage
+    function loadListings() {
+        const listingsContainer = document.getElementById('listing-container');
+        const listings = JSON.parse(localStorage.getItem('listings')) || [];
+
+        // Clear the container before adding new listings
+        listingsContainer.innerHTML = '';
+
+        // Loop through the listings and add them to the page
+        listings.forEach(listing => {
+            const listingElement = document.createElement('div');
+            listingElement.classList.add('bg-white', 'p-4', 'rounded-lg', 'shadow-lg');
+
+            // If the listing has an image, display it
+            const image = listing.image ? `<img src="${listing.image}" alt="${listing.productName}" class="w-full h-48 object-cover rounded-md">` : '';
+            
+            listingElement.innerHTML = `
+                ${image}
+                <h3 class="text-xl font-semibold text-gray-900 mt-4">${listing.productName}</h3>
+                <p class="text-gray-600 mt-2">${listing.productDescription}</p>
+                <p class="text-gray-700 mt-2">Category: ${listing.category}</p>
+                <p class="text-gray-700 mt-2">Terms: ${listing.condition}</p>
+                ${listing.rentPrice ? `<p class="text-gray-700 mt-2">Rent Price: $${listing.rentPrice}</p>` : ''}
+                ${listing.sellPrice ? `<p class="text-gray-700 mt-2">Selling Price: $${listing.sellPrice}</p>` : ''}
+                <button id="view-details" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">View Details</button>
+            `;
+
+            listingsContainer.appendChild(listingElement);
+
+            // Add event listener for 'View Details' button
+        const viewDetailsButton = document.getElementById(`view-details`);
+        viewDetailsButton.addEventListener('click', () => {
+            // Redirect to listing-page.html with the index or a unique identifier as a query parameter
+            window.location.href = `/src/listing-page.html`;
+          });
+        });
+    }
+
+    // Load listings when the page is loaded
+    window.onload = loadListings;
+</script>
+
+
 
 </body>
 </html>

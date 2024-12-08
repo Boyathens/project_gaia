@@ -10,38 +10,6 @@
     <script src="./firebase.js"></script> </head>
     </head>
 <body class="h-screen flex items-center justify-center bg-blue-400" >
-  <script>   
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    // Get a reference to the Firestore collection
-    const db = firebase.firestore();
-    const usersCollection = db.collection("users");
-
-    // Handle form submission
-    document.getElementById("login-form").addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      const name = document.getElementById("name").value;
-      const   
- email = document.getElementById("email").value;
-
-      // Add a new document to the "users" collection
-      usersCollection.add({
-        name: name,
-        email: email
-      })
-      .then(() => {
-        console.log("Document added successfully!");
-        // You might want to display a success message to the user
-      })
-      .catch((error) => {
-        console.error("Error adding document: ", error);
-        // Handle errors, e.g., display an error message to the user
-      });
-    });
-  </script>
 
 <form class="bg-white dark:bg-zinc-900 shadow-2xl rounded-2xl overflow-hidden border-4 border-blue-400 dark:border-blue-800 " id="login-form">
   <div class="px-8 py-10 md:px-10">
@@ -57,15 +25,15 @@
       <div class="relative">
         <label
           class="block mb-3 text-sm font-medium text-zinc-600 dark:text-zinc-200"
-          for="email"
-          >Email</label
+          for="username"
+          >Username</label
         >
         <input
-          placeholder="you@example.com"
+          placeholder="Username"
           class="block w-full px-4 py-3 mt-2 text-zinc-800 bg-white border-2 rounded-lg dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-200 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-opacity-50 focus:outline-none focus:ring focus:ring-blue-400"
-          name="email"
-          id="email"
-          type="email"
+          name="username"
+          id="username"
+          type="text"
         />
       </div>
       <div class="mt-6">
@@ -100,5 +68,32 @@
   </div>
 </form>
 
+<!--login handler -->
+<script>
+  document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get user input values
+    const usernameInput = document.getElementById('username').value;
+    const passwordInput = document.getElementById('password').value;
+
+    // Retrieve stored credentials from localStorage
+    const storedUsername = localStorage.getItem('username');
+    const storedPassword = localStorage.getItem('password');
+
+    // Check if the entered credentials match the stored ones
+    if (usernameInput === storedUsername && passwordInput === storedPassword) {
+        // Successful login
+        alert('Login successful! Welcome back!');
+        // Redirect to the main page or dashboard
+        window.location.href = 'client-login.html'; 
+    } else {
+        // Failed login
+        const errorMessage = document.getElementById('error-message');
+        alert('Invalid username or password. Please try again.');
+    }
+});
+
+</script>
 </body>
 </html>
