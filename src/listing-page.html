@@ -98,31 +98,31 @@
     </header>
     
     
-
     <main class="container mx-auto mt-6">
-        <div class="bg-white shadow-lg rounded-lg flex">
-            <div class="flex-1 p-6">
-                <img src="/images/listing-placeholder1.png" alt="Product Image" class="rounded-lg w-full" id="item-image">
-            </div>
-            <div class="flex-1 p-6">
-                <h2 class="text-xl font-semibold" id="item-title">Product Title</h2>
-                <p class="text-2xl text-red-600 mt-2" id="item-price">100.00</p>
-                <p class="mt-4" id="item-description">This is a brief description of the product. It highlights key features and benefits.</p>
-                <div class="mt-6">
-                    <button id="rent-button" class="bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-900">Rent</button>
-                    <button class="add-to-watchlist bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-900 "
-                            data-item="Igorot-Insipred Gown"
-                            data-image="/images/listing-placeholder1.png">Add to Watchlist
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <section class="bg-white mt-6 p-4 rounded-lg shadow">
-            <h3 class="text-lg font-semibold">Returns</h3>
-            <p>Please return after date of usage.</p>
-        </section>
-    </main>
+      <div id="listing-details-container" class="bg-white shadow-lg rounded-lg flex">
+          <!-- Listing details will be dynamically inserted here -->
+          <div class="flex-1 p-6">
+              <img src="/images/listing-placeholder1.png" alt="Product Image" class="rounded-lg w-full" id="item-image">
+          </div>
+          <div class="flex-1 p-6">
+              <h2 class="text-xl font-semibold" id="item-title">Product Title</h2>
+              <p class="text-2xl text-red-600 mt-2" id="item-price">100.00</p>
+              <p class="mt-4" id="item-description">This is a brief description of the product. It highlights key features and benefits.</p>
+              <div class="mt-6">
+                  <button id="rent-button" class="bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-900">Rent</button>
+                  <button class="add-to-watchlist bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-900 "
+                          data-item="Igorot-Insipred Gown"
+                          data-image="/images/listing-placeholder1.png">Add to Watchlist
+                  </button>
+              </div>
+          </div>
+      </div>
+  
+      <section class="bg-white mt-6 p-4 rounded-lg shadow">
+          <h3 class="text-lg font-semibold">Returns</h3>
+          <p>Please return after date of usage.</p>
+      </section>
+  </main>
 
     <footer class="bg-gray-800 text-white py-6">
         <div class="container mx-auto px-4">
@@ -156,5 +156,65 @@
         });
     </script>
 
+<!-- Dynamic Showing of Listing -->
+<script>
+  // Function to get the details of the listing and update the page content
+  function loadListingDetails() {
+      // Get the listing ID or index from the URL query string (assuming it's passed as a parameter)
+      const urlParams = new URLSearchParams(window.location.search);
+      const listingIndex = urlParams.get('index');  // or use 'id' if that's what you're passing
+
+      if (listingIndex === null) {
+          alert('Listing not found.');
+          return;
+      }
+
+      // Fetch listings from localStorage
+      const listings = JSON.parse(localStorage.getItem('listings')) || [];
+      const listing = listings[listingIndex];
+
+      if (!listing) {
+          alert('Listing not found.');
+          return;
+      }
+
+      // Update the page with the listing details
+      const itemImage = document.getElementById('item-image');
+      const itemTitle = document.getElementById('item-title');
+      const itemPrice = document.getElementById('item-price');
+      const itemDescription = document.getElementById('item-description');
+      const rentButton = document.getElementById('rent-button');
+
+      // Update the content
+      itemImage.src = listing.image || '/images/listing-placeholder1.png';  // Default if no image is available
+      itemTitle.textContent = listing.productName || 'Product Title';
+      itemPrice.textContent = listing.rentPrice ? `$${listing.rentPrice}` : 'Not Available';  // Show rent price if available
+      itemDescription.textContent = listing.productDescription || 'Description not available.';
+
+      // Event listener for Rent button (optional, can redirect or show modal)
+      rentButton.addEventListener('click', () => {
+          alert('Rent button clicked!');
+          // You can implement rent functionality here, e.g., redirect to a form or open a modal
+      });
+
+      // Handle Add to Watchlist functionality (you can store watchlist in localStorage as well)
+      const addToWatchlistButton = document.querySelector('.add-to-watchlist');
+      addToWatchlistButton.addEventListener('click', () => {
+          // Assuming you have a function to handle adding items to a watchlist
+          const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
+          watchlist.push({
+              productName: listing.productName,
+              image: listing.image,
+              productDescription: listing.productDescription,
+          });
+          localStorage.setItem('watchlist', JSON.stringify(watchlist));
+
+          alert(`${listing.productName} added to watchlist!`);
+      });
+  }
+
+  // Call the function when the page loads
+  window.onload = loadListingDetails;
+</script>
 </body>
 </html>
