@@ -12,7 +12,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.21.0/firebase-database.js"></script>
-  <script src="/src/Filter.js"></script>
+  
 
     
 
@@ -60,6 +60,7 @@
                   
                 </div>
               </div>
+              
             </div>
             <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <button id="notification-btn"type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -106,14 +107,6 @@
         </div>
       </nav>
 </header>
-<div class="filter-buttons flex justify-center gap-4 my-4">
-  <button data-filter="all" class="filter-btn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">All</button>
-  <button data-filter="women" class="filter-btn bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600">Women</button>
-  <button data-filter="men" class="filter-btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Men</button>
-  <button data-filter="Kids(male)" class="filter-btn bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">Kids(male)</button>
-  <button data-filter="Kids(female)" class="filter-btn bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">Kids(female)</button>
-</div>
-
 <div class="searchBox flex items-center bg-gray-100 p-4 rounded-lg shadow-lg">
   <input class="searchInput flex-grow p-2 rounded-l-lg border border-gray-300 focus:outline-none" type="text" name="" placeholder="Search something">
   <button class="searchButton p-2 bg-blue-500 hover:bg-blue-700 text-white rounded-r-lg flex items-center justify-center" href="#">
@@ -218,8 +211,14 @@
         const listingsContainer = document.getElementById('listing-container');
         const listings = JSON.parse(localStorage.getItem('listings')) || [];
 
+     
+
         // Clear the container before adding new listings
         listingsContainer.innerHTML = '';
+        // Filter listings based on the selected gender
+    const filteredListings = listings.filter(listing => 
+        genderFilter === 'all' || listing.gender === genderFilter
+    );
 
         // Loop through the listings and add them to the page
         listings.forEach(listing => {
@@ -250,6 +249,7 @@
           });
         });
     }
+
 
     // Load listings when the page is loaded
     window.onload = loadListings;
